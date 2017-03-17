@@ -1,0 +1,9 @@
+com\imagingserver\http\imaging\serviceImpl\ImageServiceImpl.class
+com\imagingserver\http\imaging\dataObjects\ImgResponse.class
+com\imagingserver\http\imaging\serviceImpl\LocalImageServiceImpl.class
+com\imagingserver\http\imaging\dataObjects\ServerUrlInfo.class
+com\imagingserver\http\imaging\dataObjects\ResponseData.class
+com\imagingserver\http\imaging\serviceImpl\S3ImageServiceImpl.class
+com\imagingserver\http\imaging\dataObjects\ImgRequest.class
+com\imagingserver\http\imaging\dataObjects\Test.class
+com\imagingserver\http\imaging\service\ImageService.class

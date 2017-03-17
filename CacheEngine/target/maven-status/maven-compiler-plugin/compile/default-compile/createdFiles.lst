@@ -1,0 +1,5 @@
+com\versawork\http\caching\files\SetCacheData.class
+com\versawork\http\caching\files\JedisFactory.class
+com\versawork\http\caching\files\JedisConnectionFactory.class
+com\versawork\http\caching\files\CacheAccessbyJson.class
+com\versawork\http\caching\files\TestJedisPool.class

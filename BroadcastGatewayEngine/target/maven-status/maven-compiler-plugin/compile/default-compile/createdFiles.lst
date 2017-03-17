@@ -1,0 +1,5 @@
+com\ireslab\broadcast\gateway\Test.class
+com\ireslab\broadcast\gateway\SendMessage.class
+com\ireslab\broadcast\gateway\CallFirePropertiesInfo.class
+com\ireslab\broadcast\gateway\SimpleTextBroadcast.class
+com\ireslab\broadcast\gateway\SimpleVoiceBroadcast.class

@@ -1,0 +1,39 @@
+import org.slf4j.Logger;
+import com.versawork.http.dataobject.NsRequest;
+import com.versawork.http.exception.BusinessException;
+import com.versawork.http.dataobject.AccountInfo;
+global Logger LOGGER;
+
+rule "Validating unit number"
+	agenda-group "unitNumberValidtion"
+	rule-priority=1
+	when
+		 nsRequest : NsRequest()
+	then
+		if(nsRequest.getAccountInfo().getUnitNumber() == null && nsRequest.getAccountInfo().getEmail() == null ){
+			LOGGER.error("Rule unitNumberValidtionError ::Empty unit number");
+			throw new BusinessException("unit.number.empty");
+		}
+			
+		
+end
+
+
+
+
+rule "Validating dob"
+	agenda-group "unitNumberValidtion"
+	when
+		 nsRequest : NsRequest()
+	then
+		if(nsRequest.getAccountInfo().getUnitNumber() == null && nsRequest.getAccountInfo().getEmail() == null ){
+			LOGGER.error("Rule unitNumberValidtionError ::Empty unit number");
+			throw new BusinessException("unit.number.empty");
+		}
+end
+
+
+
+
+
+

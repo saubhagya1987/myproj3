@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/classes" path="src">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/BroadcastGatewayEngine"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CacheEngine"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/imagingServer"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/naavisEngageCore"/>
+	<classpathentry kind="lib" path="/BroadcastGatewayEngine/target/BroadcastGatewayEngine-1.7.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/CacheEngine/target/CacheEngine-1.7.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/cacheRefresh/target/cacheRefresh-1.7.0-SNAPSHOT.war"/>
+	<classpathentry kind="lib" path="/imagingServer/target/imagingServer-1.7.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/naavisEngageCore/target/naavisEngageCore-1.7.0-SNAPSHOT.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

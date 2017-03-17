@@ -1,0 +1,38 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${engage.mail.host}" />
+		<property name="port" value="${engage.mail.port}" />
+		<property name="username" value="${engage.mail.username}" />
+		<property name="password" value="${engage.mail.password}" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.localhost">${engage.mail.host}</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="sendMail" class="com.versawork.http.utils.SendMail">
+		<property name="mailSender" ref="mailSender" />
+		<property name="simpleMailMessage" ref="customeMailMessage" />
+	</bean>
+
+	<bean id="secureMailSender" class="com.versawork.http.utils.SecureMailSender">
+		<property name="mailSender" ref="mailSender" />
+		<property name="simpleMailMessage" ref="customeMailMessage" />
+	</bean>
+
+	<bean id="customeMailMessage" class="org.springframework.mail.SimpleMailMessage">
+		<property name="from" value="${engage.mail.username}" />
+		<property name="subject" value="${engage.mail.subject}" />
+		<property name="text">
+			<value><![CDATA[%s%sRegards,%s]]>
+			</value>
+		</property>
+	</bean>
+
+</beans>

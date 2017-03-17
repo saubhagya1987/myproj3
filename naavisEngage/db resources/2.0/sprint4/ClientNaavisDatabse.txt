@@ -1,0 +1,4 @@
+update [engage_app_20].[dbo].[client_naavis_databases] set facility_name='Salina Regional Hospital' where client_database_id=11
+update [engage_app_20].[dbo].[client_naavis_databases] set facility_name='Lindsborg Community Hospital' where client_database_id=13
+update [engage_app_20].[dbo].[client_naavis_databases] set facility_name='Cascade Valley Hospital' where client_database_id=9
+ALTER TABLE [engage_app_20].[dbo].[account_medication_management] ALTER COLUMN notes nvarchar(256)

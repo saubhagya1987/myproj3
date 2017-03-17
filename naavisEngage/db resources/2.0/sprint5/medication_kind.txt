@@ -1,0 +1,20 @@
+--Use QA-2 Database instaed of [engage_app_20] 
+ALTER TABLE [engage_app_20].[dbo].[account_medication_management] DROP CONSTRAINT [FK_account_medication_management__medication_kind]
+TRUNCATE TABLE [engage_app_20].[dbo].[medication_kind]
+INSERT [engage_app_20].[dbo].[medication_kind] VALUES (1,'pill','pill')
+INSERT [engage_app_20].[dbo].[medication_kind] VALUES (2,'tablet','tablet')
+INSERT [engage_app_20].[dbo].[medication_kind] VALUES (3,'capsule','capsule')
+INSERT [engage_app_20].[dbo].[medication_kind] VALUES (4,'syrup','mL')
+INSERT [engage_app_20].[dbo].[medication_kind] VALUES (5,'powder','gram')
+INSERT [engage_app_20].[dbo].[medication_kind] VALUES (6,'inhaler','puff')
+INSERT [engage_app_20].[dbo].[medication_kind] VALUES (7,'cream','gram')
+INSERT [engage_app_20].[dbo].[medication_kind] VALUES (8,'patch','patch')
+INSERT [engage_app_20].[dbo].[medication_kind] VALUES (9,'drops','drops')
+INSERT [engage_app_20].[dbo].[medication_kind] VALUES (10,'suppository','suppository')
+INSERT [engage_app_20].[dbo].[medication_kind] VALUES (11,'lozenge','lozenge')
+INSERT [engage_app_20].[dbo].[medication_kind] VALUES (12,'injection','injection')
+INSERT [engage_app_20].[dbo].[medication_kind] VALUES (13,'liquid','mL')
+INSERT [engage_app_20].[dbo].[medication_kind] VALUES (14,'chews','chews')
+INSERT [engage_app_20].[dbo].[medication_kind] VALUES (15,'suspension','mg/mL')
+INSERT [engage_app_20].[dbo].[medication_kind] VALUES (16,'solution','mL')
+ALTER TABLE [engage_app_20].[dbo].[account_medication_management] ADD CONSTRAINT [FK_account_medication_management__medication_kind] FOREIGN KEY (medication_kind_id) REFERENCES [engage_app_20].[dbo].[medication_kind](medication_kind_id)

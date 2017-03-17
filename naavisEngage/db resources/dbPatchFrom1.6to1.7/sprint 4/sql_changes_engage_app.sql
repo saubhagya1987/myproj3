@@ -1,0 +1,1 @@
+update [engage_app].[dbo].[engage_app_features] set feature_name = 'About Engage' where feature_id=17

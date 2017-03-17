@@ -1,0 +1,41 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+
+	<!-- Jedis ConnectionFactory -->
+	<bean id='jedisConnectionFactory0'
+		class='org.springframework.data.redis.connection.jedis.JedisConnectionFactory'>
+		<property name="hostName" value="192.168.1.147" />
+		<property name="port" value="7000" />
+		<property name="usePool" value="true" />
+	</bean>
+
+	<bean id='jedisConnectionFactory1'
+		class='org.springframework.data.redis.connection.jedis.JedisConnectionFactory'>
+		<property name="hostName" value="192.168.1.147" />
+		<property name="port" value="7001" />
+		<property name="usePool" value="true" />
+	</bean>
+
+	<bean id='jedisConnectionFactory2'
+		class='org.springframework.data.redis.connection.jedis.JedisConnectionFactory'>
+		<property name="hostName" value="192.168.1.147" />
+		<property name="port" value="7002" />
+		<property name="usePool" value="true" />
+	</bean>
+
+	<bean id='jedisConnectionFactory3'
+		class='org.springframework.data.redis.connection.jedis.JedisConnectionFactory'>
+		<property name="hostName" value="192.168.1.147" />
+		<property name="port" value="7003" />
+		<property name="usePool" value="true" />
+	</bean>
+
+
+	<!-- redis template definition <bean id='redisTemplate' class='org.springframework.data.redis.core.RedisTemplate'> 
+		<property name ="connection-factory-ref" value="jedisConnectionFactory"/> 
+		</bean> -->
+</beans>

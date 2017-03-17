@@ -1,0 +1,91 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee     http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/mvc     http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/tx      http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop     http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/util    http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/task	  http://www.springframework.org/schema/task/spring-task.xsd">
+
+	<context:annotation-config />
+
+	<context:component-scan base-package="com.versawork">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Repository" />
+	</context:component-scan>
+	
+	<mvc:annotation-driven />
+	
+	<bean id="defaultPersistenceUnitManager"
+		class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
+		<property name="persistenceXmlLocations">
+			<list value-type="java.lang.String">
+				<value>/META-INF/versawork_persistence.xml</value>
+				<value>/META-INF/versawork_ehr_persistence.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- defaultPersistenceUnitManager starts -->
+	<bean id="versawork_DS"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+		depends-on="transactionManager">
+		<property name="persistenceUnitManager" ref="defaultPersistenceUnitManager" />
+		<property name="persistenceUnitName" value="versawork_DS" />
+	</bean>
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="versawork_DS" />
+		<qualifier value="app_txn" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<!-- defaultPersistenceUnitManager ends -->
+
+	<!-- ehrPersistenceUnitManager Starts -->
+	<bean id="versawork_EHR"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+		depends-on="ehrTransactionManager">
+		<property name="persistenceUnitManager" ref="defaultPersistenceUnitManager" />
+		<property name="persistenceUnitName" value="versawork_ehr" />
+	</bean>
+	<bean id="ehrTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="versawork_EHR" />
+		<qualifier value="ehr_txn" />
+	</bean>
+	<tx:annotation-driven transaction-manager="ehrTransactionManager" />
+	<!-- ehrPersistenceUnitManager Ends -->
+
+
+	<aop:config>
+		<aop:pointcut id="defaultServiceOperation"
+			expression="execution(public * com.versawork.asyn.*.*DaoImpl.update*(..))|| execution(public * com.versawork.asyn.*.*DaoImpl.save*(..))" />
+		<aop:advisor pointcut-ref="defaultServiceOperation"
+			advice-ref="defaultTxAdvice" />
+	</aop:config>
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<tx:advice id="defaultTxAdvice">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED" no-rollback-for="Exception" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource"> 
+		<property name="basenames" value="classpath:resource.properties" /> <property 
+		name="defaultEncoding" value="UTF-8" /> </bean> -->
+
+
+
+	<context:property-placeholder location="classpath:mail.properties" />
+
+	<!-- <import resource="spring-mail.xml" /> -->
+
+	<!-- This bean gives the values to the S3 class and values needs to be passed 
+		to this class -->
+</beans>

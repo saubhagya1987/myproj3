@@ -1,0 +1,10 @@
+ALTER TABLE [engage_app_20].[dbo].[account_medication_management_schedule] ADD reminder_day nvarchar(55)
+ALTER TABLE [engage_app_20].[dbo].[account_medication_management_reminder] ADD frequency_value int  null
+ALTER TABLE [engage_app_20].[dbo].[account_medication_management] ADD dosage int null 
+ALTER TABLE [engage_app_20].[dbo].[account_medication_management] ADD refill_date datetime null DEFAULT(GETDATE())
+ALTER TABLE [engage_app_20].[dbo].[account_medication_management] ADD is_reminder bit NOT NULL default 1
+ALTER TABLE [engage_app_20].[dbo].[account_medication_management] ALTER COLUMN rx_number nvarchar(256) NULL
+ALTER TABLE [engage_app_20].[dbo].[account_medication_management] DROP CONSTRAINT [FK_account_medication_management__medication_method]
+ALTER TABLE [engage_app_20].[dbo].[account_medication_management_reminder] DROP CONSTRAINT [FK_account_medication_management_reminder__medication_dosage]
+ALTER TABLE [engage_app_20].[dbo].[account_medication_management_reminder] ALTER COLUMN [medication_dosage_id] nvarchar(256) NULL
+ALTER TABLE [engage_app_20].[dbo].[account_medication_engage] ALTER COLUMN reminder_date datetime NULL

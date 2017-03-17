@@ -1,0 +1,39 @@
+ALTER TABLE [engage_app_20].[dbo].[account] ADD temp_pin NVARCHAR(300) NULL ;
+
+ALTER TABLE [engage_app_20].[dbo].[account] ADD push_notification  bit DEFAULT 0 NOT NULL;
+
+
+USE [engage_ehr_20]
+GO
+
+/****** Object:  Table [dbo].[feed_info]    Script Date: 11-12-2015 11:36:00 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[feed_info](
+	[account_id] [int] NOT NULL,
+	[feed_header] [nvarchar](100) NOT NULL,
+	[feed_msg] [nvarchar](max) NULL,
+	[feature_id] [int] NOT NULL,
+	[feature_name] [nvarchar](50) NULL,
+	[is_new] [bit] NOT NULL,
+	[feed_info_id] [int] IDENTITY(1,1) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[feed_info_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[feed_info] ADD  DEFAULT ((1)) FOR [is_new]
+GO
+
+
+Alter table  [engage_ehr_20].[dbo].[etl_info] drop column plab_status,pall_status,img_status,prob_status,pmed_status,
+pvsi_status,care_team_status,procedure_status,care_plan_status,functional_status,immunalization_status,diagnosis_status,facility_notice_status,
+facility_provider_status,facility_service_status,inpatient_status,patient_visit_status
+

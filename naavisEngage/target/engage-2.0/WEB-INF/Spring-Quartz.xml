@@ -1,0 +1,83 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="runMeTask" class="com.versawork.http.utils.RunMeTask" />
+
+	<bean id="runMeTaskNotification" class="com.versawork.http.utils.RunMeTaskNotification" />
+
+	<bean id="runMeJob"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="runMeTask" />
+		<property name="targetMethod" value="appointmentConfirmationJob" />
+		<property name="concurrent" value="false" />
+	</bean>
+
+	<!-- Simple Trigger, run every 2.7 hours (10000000) -->
+
+	<bean id="simpleTrigger"
+		class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+		<property name="jobDetail" ref="runMeJob" />
+		<property name="repeatInterval">
+			<bean class="java.lang.Long">
+				<constructor-arg value="${repeat.interval}" />
+			</bean>
+		</property>
+		<property name="startDelay">
+			<bean class="java.lang.Long">
+				<constructor-arg value="${start.delay}" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="runMeJob" />
+				<ref bean="runMeJobNotification" />
+
+			</list>
+		</property>
+		<property name="triggers">
+			<list>
+				<ref bean="simpleTrigger" />
+				<ref bean="simpleTriggerNotificationJob" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="runMeJobNotification"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="runMeTaskNotification" />
+		<property name="targetMethod" value="pushNotificationJob" />
+		<property name="concurrent" value="false" />
+	</bean>
+
+	<!-- Simple Trigger, run every 24 hours -->
+
+	<bean id="simpleTriggerNotificationJob"
+		class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+		<property name="jobDetail" ref="runMeJobNotification" />
+		<property name="repeatInterval">
+			<bean class="java.lang.Long">
+				<constructor-arg value="${repeat.interval.notification}" />
+			</bean>
+		</property>
+		<property name="startDelay">
+			<bean class="java.lang.Long">
+				<constructor-arg value="${start.delay.notification}" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>classpath:quartz_timer</value>
+			</list>
+		</property>
+		<property name="cacheSeconds" value="5" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+</beans>

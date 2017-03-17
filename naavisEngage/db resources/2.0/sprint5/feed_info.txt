@@ -1,0 +1,5 @@
+ALTER TABLE engage_ehr_20.dbo.feed_info ADD  source_name nvarchar(64)  NULL
+ALTER TABLE engage_ehr_20.dbo.feed_info ADD date_added datetime null CONSTRAINT DF_feed_info__date_added DEFAULT(GETDATE())
+update  [engage_ehr_20].[dbo].[feed_info] set source_name='General Hospital' 
+update  [engage_ehr_20].[dbo].[feed_info]set date_added='2016-01-01 00:00:00.000' 
+

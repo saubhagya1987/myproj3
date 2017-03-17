@@ -1,0 +1,16 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure>
+	<deployment>
+		<dependencies>
+			<module name="com.navisengage.lib" slot="main" />
+			<module name="com.navisengage.configuration" slot="main" />
+			<module name="com.microsoft.sqlserver.jdbc" slot="main" />
+		</dependencies>
+		<exclusions>
+			<!-- do not use JBOSS hibernate jars -->
+			<module name="org.hibernate" />
+			<module name="org.apache.log4j" />
+			<module name="org.apache.commons.logging" />
+		</exclusions>
+	</deployment>
+</jboss-deployment-structure>

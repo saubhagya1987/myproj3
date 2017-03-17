@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- See http://www.jboss.org/community/wiki/Multiple1PC for information 
+	about local-tx-datasource -->
+<!-- $Id: mysql-ds.xml 88948 2009-05-15 14:09:08Z jesper.pedersen $ -->
+<!-- Datasource config for MySQL using 3.0.9 available from: http://www.mysql.com/downloads/api-jdbc-stable.html -->
+
+
+<datasources>
+
+	<local-tx-datasource>
+		<jndi-name>versawork_DS</jndi-name>
+		<connection-url>jdbc:sqlserver://localhost:1433;DatabaseName=engage</connection-url>
+		<driver-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver-class>
+		<user-name>sa</user-name>
+		<password>Admin!123</password>
+		<check-valid-connection-sql>SELECT count(1) FROM sys.objects</check-valid-connection-sql>
+		<metadata>
+			<type-mapping>MS SQLSERVER2012</type-mapping>
+		</metadata>
+	</local-tx-datasource>
+
+</datasources> 	
+	
+
+

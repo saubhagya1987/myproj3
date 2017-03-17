@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" 
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
+id="WebApp_ID" version="2.5">
+	<welcome-file-list>
+	    <welcome-file></welcome-file>
+	</welcome-file-list>
+  <display-name>engage20</display-name>  
+  
+  <servlet>
+    <servlet-name>engage20</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+    classpath:engage20-servlet.xml
+    classpath:MitchellResourceContext.xml
+	WEB-INF/applicationContext.xml
+	<!-- WEB-INF/Spring-Quartz.xml-->
+	WEB-INF/spring-mail.xml	
+    </param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>engage20</servlet-name>
+    <url-pattern>/1/service/*</url-pattern>
+  </servlet-mapping>
+  
+  <!-- START CASCADE -->
+ 
+  <servlet>
+    <servlet-name>cascadeValley</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+     classpath:engage20-servlet.xml
+	WEB-INF/applicationContext.xml
+	WEB-INF/Spring-Quartz.xml
+	WEB-INF/spring-mail.xml	 
+    classpath:CascadeResourceContext.xml 
+    
+    </param-value>
+    </init-param> 
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>cascadeValley</servlet-name>
+    <url-pattern>/9/service/*</url-pattern>
+  </servlet-mapping>
+  <!--  END -->
+  
+  <!-- START SALINA -->
+  
+  <servlet>
+    <servlet-name>salinaRegional</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+    classpath:engage20-servlet.xml
+	WEB-INF/applicationContext.xml
+	<!-- WEB-INF/Spring-Quartz.xml-->
+	WEB-INF/spring-mail.xml	 
+    classpath:SalinaResourceContext.xml
+    </param-value>
+    </init-param> 
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>salinaRegional</servlet-name>
+    <url-pattern>/11/service/*</url-pattern>
+  </servlet-mapping>
+  <!--  END -->
+  
+  
+<!--    START lindsBorg -->
+  <servlet>
+    <servlet-name>lindsborg</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+    classpath:engage20-servlet.xml
+    classpath:lindsborgResourceContext.xml
+	WEB-INF/applicationContext.xml
+	<!-- WEB-INF/Spring-Quartz.xml-->
+	WEB-INF/spring-mail.xml 
+    </param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>lindsborg</servlet-name>
+    <url-pattern>/13/service/*</url-pattern>
+  </servlet-mapping>
+ 
+    <!--  END -->
+  
+  
+<!--    START Naavis -->
+  
+   <servlet>
+    <servlet-name>naavis</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+    classpath:engage20-servlet.xml
+    classpath:NavisResourceContext.xml
+	WEB-INF/applicationContext.xml
+	<!-- WEB-INF/Spring-Quartz.xml-->
+	WEB-INF/spring-mail.xml	
+    </param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>naavis</servlet-name>
+    <url-pattern>/0/service/*</url-pattern>
+  </servlet-mapping>
+  
+  <!--  END -->
+  
+  
+  
+  
+  
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+    		WEB-INF/applicationContext.xml
+			classpath:security-context.xml
+			WEB-INF/Spring-Quartz.xml
+			
+		</param-value>
+  </context-param>  
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+ <filter>
+	    <filter-name>SessionFilter</filter-name>
+	    <filter-class>
+	        org.springframework.web.filter.DelegatingFilterProxy
+	    </filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>SessionFilter</filter-name>
+	    <url-pattern>/1/service/accountService/updateAccountPassword</url-pattern>
+	    <url-pattern>/1/service/accountService/resetAccountPassword</url-pattern>
+	    <url-pattern>/1/service/accountService/setPatientAppointment</url-pattern>
+	    <url-pattern>/1/service/accountService/getPatientAppointment</url-pattern>
+	    <url-pattern>/1/service/accountService/getPatientLabResult</url-pattern>
+	    <url-pattern>/1/service/accountService/getPatientPrescription</url-pattern>
+	    
+	    <url-pattern>/1/service/accountService/getPatientProblemGroups</url-pattern>
+	    <url-pattern>/1/service/accountService/getPatientAllergyGroup</url-pattern>
+	    <url-pattern>/1/service/accountService/getPatientPrescriptionGroups</url-pattern>
+	    <url-pattern>/1/service/accountService/getPatientLabGroups</url-pattern>
+	    <url-pattern>/1/service/accountService/getAccountImagingDetails</url-pattern>
+	    
+	    <url-pattern>/1/service/accountService/resetAccountPin</url-pattern>
+	    <url-pattern>/1/service/accountService/savepreferredlanguage</url-pattern>
+	    
+	    <url-pattern>/1/service/notificationService/getBloodPressureReminderResponse</url-pattern>
+	    <url-pattern>/1/service/notificationService/getMedicationReminderResponse</url-pattern>
+	    <url-pattern>/1/service/notificationService/getPatientScheduledAppointments</url-pattern>
+	    <url-pattern>/1/service/notificationService/getPatientFutureConfirmedAppointments</url-pattern>
+	    <url-pattern>/1/service/notificationService/getPatientFutureScheduledAppointments</url-pattern>
+	    <url-pattern>/1/service/notificationService/getPatientConfirmedAppointments</url-pattern>
+	    <url-pattern>/1/service/notificationService/getBloodPressureNotificationInactiveAlert</url-pattern>
+	    <url-pattern>/1/service/notificationService/getMedicationNotificationInactiveAlert</url-pattern>
+	    <url-pattern>/1/service/notificationService/getWarningMessages</url-pattern>
+	    <url-pattern>/1/service/notificationService/getPatientAppointments</url-pattern>
+	    <url-pattern>/1/service/notificationService/loadMorePatientAppointments</url-pattern>
+	    <url-pattern>/1/service/notificationService/searchDetails</url-pattern>
+	    <!-- commented for guest case -->
+	    <!-- url-pattern>/1/service/notificationService/getNotificationsCount</url-pattern-->
+	    
+	    
+	    <url-pattern>/1/service/registrationService/sendSecurityCodeForPhoneNumberChange</url-pattern>
+	    <url-pattern>/1/service/registrationService/sendSecurityCodeForProfileEdit</url-pattern>
+	    <url-pattern>/1/service/registrationService/linkaccount</url-pattern>
+	    <url-pattern>/1/service/getprofileinfo</url-pattern>
+	    <url-pattern>/1/service/getvisitlist</url-pattern>    
+	    
+	    <url-pattern>/1/service/bloodpressure/saveBloodPressure</url-pattern>
+	    <url-pattern>/1/service/bloodpressure/getBloodPressure</url-pattern>
+	    <url-pattern>/1/service/bloodpressure/editBloodPressure</url-pattern>
+	    <url-pattern>/1/service/bloodpressure/deleteBloodPressure</url-pattern>
+	    <url-pattern>/1/service/bloodpressure/saveBloodPressureReminder</url-pattern>
+	    <url-pattern>/1/service/bloodpressure/getBloodPressureReminders</url-pattern>
+	    <url-pattern>/1/service/bloodpressure/deleteBloodPressureReminder</url-pattern>
+	    <url-pattern>/1/service/bloodpressure/editBloodPressureReminder</url-pattern>	    
+	    
+	    <url-pattern>/1/service/viewPatientInfo/*</url-pattern>
+	    <url-pattern>/1/service/systemAdmim/*</url-pattern>	    
+	    
+	    <url-pattern>/1/service/provider/*</url-pattern>
+	    <url-pattern>/1/service/updateprofileinfo</url-pattern>
+	    <url-pattern>/1/service/medicatnMangmntService/saveMedication</url-pattern>
+	    <url-pattern>/1/service/medicatnMangmntService/getMedicatnList</url-pattern>	    
+		<url-pattern>/1/service/medicatnMangmntService/editMedication</url-pattern>	    
+		<url-pattern>/1/service/medicatnMangmntService/deleteMedication</url-pattern>	    
+		<url-pattern>/1/service/medicatnMangmntService/saveMedicatnReminder</url-pattern>	    
+		<url-pattern>/1/service/medicatnMangmntService/getMedicatnReminder</url-pattern>	    
+		<url-pattern>/1/service/medicatnMangmntService/editMedicatnReminder</url-pattern>	    
+		<url-pattern>/1/service/medicatnMangmntService/deleteReminder</url-pattern>	    
+		<!-- <url-pattern>/1/service/medicatnMangmntService/saveReminderResponse</url-pattern> -->	    
+		<url-pattern>/1/service/medicatnMangmntService/getReminderResponse</url-pattern>
+		<url-pattern>/1/service/healthLog/getHealthLog</url-pattern>
+		<url-pattern>/1/service/getHealthLog/addWeight</url-pattern>
+		<url-pattern>/1/service/getHealthLog/getWeight</url-pattern>
+		<url-pattern>/1/service/getHealthLog/deleteWeight</url-pattern>
+		<url-pattern>/1/service/getHealthLog/updateWeight</url-pattern>
+		
+		
+		<!-- commented for guest case -->	 
+		<!-- url-pattern>/1/service/hospitalService/getHospitalNotice</url-pattern-->	
+		
+		<!-- Client Id 9 -->
+		<url-pattern>/9/service/accountService/updateAccountPassword</url-pattern>
+	    <url-pattern>/9/service/accountService/resetAccountPassword</url-pattern>
+	    <url-pattern>/9/service/accountService/setPatientAppointment</url-pattern>
+	    <url-pattern>/9/service/accountService/getPatientAppointment</url-pattern>
+	    <url-pattern>/9/service/accountService/getPatientLabResult</url-pattern>
+	    <url-pattern>/9/service/accountService/getPatientPrescription</url-pattern>
+	    
+	    <url-pattern>/9/service/accountService/getPatientProblemGroups</url-pattern>
+	    <url-pattern>/9/service/accountService/getPatientAllergyGroup</url-pattern>
+	    <url-pattern>/9/service/accountService/getPatientPrescriptionGroups</url-pattern>
+	    <url-pattern>/9/service/accountService/getPatientLabGroups</url-pattern>
+	    <url-pattern>/9/service/accountService/getAccountImagingDetails</url-pattern>
+	    
+	    <url-pattern>/9/service/accountService/resetAccountPin</url-pattern>
+	    <url-pattern>/9/service/accountService/savepreferredlanguage</url-pattern>
+	    
+	    <url-pattern>/9/service/notificationService/getBloodPressureReminderResponse</url-pattern>
+	    <url-pattern>/9/service/notificationService/getMedicationReminderResponse</url-pattern>
+	    <url-pattern>/9/service/notificationService/getPatientScheduledAppointments</url-pattern>
+	    <url-pattern>/9/service/notificationService/getPatientFutureConfirmedAppointments</url-pattern>
+	    <url-pattern>/9/service/notificationService/getPatientFutureScheduledAppointments</url-pattern>
+	    <url-pattern>/9/service/notificationService/getPatientConfirmedAppointments</url-pattern>
+	    <url-pattern>/9/service/notificationService/getBloodPressureNotificationInactiveAlert</url-pattern>
+	    <url-pattern>/9/service/notificationService/getMedicationNotificationInactiveAlert</url-pattern>
+	    <url-pattern>/9/service/notificationService/getWarningMessages</url-pattern>
+	    <url-pattern>/9/service/notificationService/getPatientAppointments</url-pattern>
+	    <url-pattern>/9/service/notificationService/loadMorePatientAppointments</url-pattern>
+	    <url-pattern>/9/service/notificationService/searchDetails</url-pattern>
+	    <!-- commented for guest user -->
+	    <!-- url-pattern>/9/service/notificationService/getNotificationsCount</url-pattern-->
+	    
+	    <url-pattern>/9/service/registrationService/sendSecurityCodeForPhoneNumberChange</url-pattern>
+	    <url-pattern>/9/service/registrationService/sendSecurityCodeForProfileEdit</url-pattern>
+	    <url-pattern>/9/service/registrationService/linkaccount</url-pattern>
+	    <url-pattern>/9/service/getprofileinfo</url-pattern>
+	    <url-pattern>/9/service/getvisitlist</url-pattern>    
+	    
+	    <url-pattern>/9/service/bloodpressure/saveBloodPressure</url-pattern>
+	    <url-pattern>/9/service/bloodpressure/getBloodPressure</url-pattern>  
+	    <url-pattern>/9/service/bloodpressure/editBloodPressure</url-pattern>
+	    <url-pattern>/9/service/bloodpressure/deleteBloodPressure</url-pattern>
+	    <url-pattern>/9/service/bloodpressure/saveBloodPressureReminder</url-pattern>
+	    <url-pattern>/9/service/bloodpressure/getBloodPressureReminders</url-pattern>
+	    <url-pattern>/9/service/bloodpressure/deleteBloodPressureReminder</url-pattern>
+	    <url-pattern>/9/service/bloodpressure/editBloodPressureReminder</url-pattern>	    
+	    
+	    <!-- <url-pattern>/9/service/viewPatientInfo/*</url-pattern> -->
+	    <!-- <url-pattern>/9/service/viewPatientInfo/*</url-pattern> --> 
+	    <url-pattern>/9/service/systemAdmim/*</url-pattern>	    
+	    
+	    <url-pattern>/9/service/provider/*</url-pattern>
+	    <url-pattern>/9/service/updateprofileinfo</url-pattern>
+	    <url-pattern>/9/service/medicatnMangmntService/saveMedication</url-pattern>
+	    <url-pattern>/9/service/medicatnMangmntService/getMedicatnList</url-pattern>	    
+		<url-pattern>/9/service/medicatnMangmntService/editMedication</url-pattern>	    
+		<url-pattern>/9/service/medicatnMangmntService/deleteMedication</url-pattern>	    
+		<url-pattern>/9/service/medicatnMangmntService/saveMedicatnReminder</url-pattern>	    
+		<url-pattern>/9/service/medicatnMangmntService/getMedicatnReminder</url-pattern>	    
+		<url-pattern>/9/service/medicatnMangmntService/editMedicatnReminder</url-pattern>	    
+		<url-pattern>/9/service/medicatnMangmntService/deleteReminder</url-pattern>	    
+		<!-- <url-pattern>/9/service/medicatnMangmntService/saveReminderResponse</url-pattern> -->	    
+		<url-pattern>/9/service/medicatnMangmntService/getReminderResponse</url-pattern>
+	 	<url-pattern>/9/service/healthLog/getHealthLog</url-pattern> 
+		<url-pattern>/9/service/getHealthLog/addWeight</url-pattern>
+		<url-pattern>/9/service/getHealthLog/getWeight</url-pattern>
+		<url-pattern>/9/service/getHealthLog/deleteWeight</url-pattern>
+		<url-pattern>/9/service/getHealthLog/updateWeight</url-pattern>
+		<!-- commented for guest user -->	 
+		<!-- url-pattern>/9/service/hospitalService/getHospitalNotice</url-pattern-->
+		<!-- <url-pattern>/9/service/healthLog/getHealthLog</url-pattern> -->
+		
+		<!-- Client Id 11 -->
+		<url-pattern>/11/service/accountService/updateAccountPassword</url-pattern>
+	    <url-pattern>/11/service/accountService/resetAccountPassword</url-pattern>
+	    <url-pattern>/11/service/accountService/setPatientAppointment</url-pattern>
+	    <url-pattern>/11/service/accountService/getPatientAppointment</url-pattern>
+	    <url-pattern>/11/service/accountService/getPatientLabResult</url-pattern>
+	    <url-pattern>/11/service/accountService/getPatientPrescription</url-pattern>
+	    
+	    <url-pattern>/11/service/accountService/getPatientProblemGroups</url-pattern>
+	    <url-pattern>/11/service/accountService/getPatientAllergyGroup</url-pattern>
+	    <url-pattern>/11/service/accountService/getPatientPrescriptionGroups</url-pattern>
+	    <url-pattern>/11/service/accountService/getPatientLabGroups</url-pattern>
+	    <url-pattern>/11/service/accountService/getAccountImagingDetails</url-pattern>
+	    
+	    <url-pattern>/11/service/accountService/resetAccountPin</url-pattern>
+	    <url-pattern>/11/service/accountService/savepreferredlanguage</url-pattern>
+	    
+	    <url-pattern>/11/service/notificationService/getBloodPressureReminderResponse</url-pattern>
+	    <url-pattern>/11/service/notificationService/getMedicationReminderResponse</url-pattern>
+	    <url-pattern>/11/service/notificationService/getPatientScheduledAppointments</url-pattern>
+	    <url-pattern>/11/service/notificationService/getPatientFutureConfirmedAppointments</url-pattern>
+	    <url-pattern>/11/service/notificationService/getPatientFutureScheduledAppointments</url-pattern>
+	    <url-pattern>/11/service/notificationService/getPatientConfirmedAppointments</url-pattern>
+	    <url-pattern>/11/service/notificationService/getBloodPressureNotificationInactiveAlert</url-pattern>
+	    <url-pattern>/11/service/notificationService/getMedicationNotificationInactiveAlert</url-pattern>
+	    <url-pattern>/11/service/notificationService/getWarningMessages</url-pattern>
+	    <url-pattern>/11/service/notificationService/getPatientAppointments</url-pattern>
+	    <url-pattern>/11/service/notificationService/loadMorePatientAppointments</url-pattern>
+	    <url-pattern>/11/service/notificationService/searchDetails</url-pattern>
+	    <!-- commented for guest user -->
+	    <!-- url-pattern>/11/service/notificationService/getNotificationsCount</url-pattern-->
+	    
+	    <url-pattern>/11/service/registrationService/sendSecurityCodeForPhoneNumberChange</url-pattern>
+	    <url-pattern>/11/service/registrationService/sendSecurityCodeForProfileEdit</url-pattern>
+	    <url-pattern>/11/service/registrationService/linkaccount</url-pattern>
+	    <url-pattern>/11/service/getprofileinfo</url-pattern>
+	    <url-pattern>/11/service/getvisitlist</url-pattern>    
+	    
+	    <url-pattern>/11/service/bloodpressure/saveBloodPressure</url-pattern>
+	    <url-pattern>/11/service/bloodpressure/getBloodPressure</url-pattern>
+	    <url-pattern>/11/service/bloodpressure/editBloodPressure</url-pattern>
+	    <url-pattern>/11/service/bloodpressure/deleteBloodPressure</url-pattern>
+	    <url-pattern>/11/service/bloodpressure/saveBloodPressureReminder</url-pattern>
+	    <url-pattern>/11/service/bloodpressure/getBloodPressureReminders</url-pattern>
+	    <url-pattern>/11/service/bloodpressure/deleteBloodPressureReminder</url-pattern>
+	    <url-pattern>/11/service/bloodpressure/editBloodPressureReminder</url-pattern>	    
+	    
+	    <url-pattern>/11/service/viewPatientInfo/*</url-pattern>
+	    <url-pattern>/11/service/systemAdmim/*</url-pattern>	    
+	    
+	    <url-pattern>/11/service/provider/*</url-pattern>
+	    <url-pattern>/11/service/updateprofileinfo</url-pattern>
+	    <url-pattern>/11/service/medicatnMangmntService/saveMedication</url-pattern>
+	    <url-pattern>/11/service/medicatnMangmntService/getMedicatnList</url-pattern>	    
+		<url-pattern>/11/service/medicatnMangmntService/editMedication</url-pattern>	    
+		<url-pattern>/11/service/medicatnMangmntService/deleteMedication</url-pattern>	    
+		<url-pattern>/11/service/medicatnMangmntService/saveMedicatnReminder</url-pattern>	    
+		<url-pattern>/11/service/medicatnMangmntService/getMedicatnReminder</url-pattern>	    
+		<url-pattern>/11/service/medicatnMangmntService/editMedicatnReminder</url-pattern>	    
+		<url-pattern>/11/service/medicatnMangmntService/deleteReminder</url-pattern>	    
+		<!-- <url-pattern>/11/service/medicatnMangmntService/saveReminderResponse</url-pattern> -->	    
+		<url-pattern>/11/service/medicatnMangmntService/getReminderResponse</url-pattern>
+		<url-pattern>/11/service/healthLog/getHealthLog</url-pattern>
+		<url-pattern>/11/service/getHealthLog/addWeight</url-pattern>
+		<url-pattern>/11/service/getHealthLog/getWeight</url-pattern>
+		<url-pattern>/11/service/getHealthLog/deleteWeight</url-pattern>
+		<url-pattern>/11/service/getHealthLog/updateWeight</url-pattern>	
+		<!-- commented for guest user --> 
+		<!-- url-pattern>/11/service/hospitalService/getHospitalNotice</url-pattern-->   
+		
+		<!-- Client Id 13 -->
+		<url-pattern>/13/service/accountService/updateAccountPassword</url-pattern>
+	    <url-pattern>/13/service/accountService/resetAccountPassword</url-pattern>
+	    <url-pattern>/13/service/accountService/setPatientAppointment</url-pattern>
+	    <url-pattern>/13/service/accountService/getPatientAppointment</url-pattern>
+	    <url-pattern>/13/service/accountService/getPatientLabResult</url-pattern>
+	    <url-pattern>/13/service/accountService/getPatientPrescription</url-pattern>
+	    
+	    <url-pattern>/13/service/accountService/getPatientProblemGroups</url-pattern>
+	    <url-pattern>/13/service/accountService/getPatientAllergyGroup</url-pattern>
+	    <url-pattern>/13/service/accountService/getPatientPrescriptionGroups</url-pattern>
+	    <url-pattern>/13/service/accountService/getPatientLabGroups</url-pattern>
+	    <url-pattern>/13/service/accountService/getAccountImagingDetails</url-pattern>
+	    
+	    <url-pattern>/13/service/accountService/resetAccountPin</url-pattern>
+	    <url-pattern>/13/service/accountService/savepreferredlanguage</url-pattern>
+	    
+	    <url-pattern>/13/service/notificationService/getBloodPressureReminderResponse</url-pattern>
+	    <url-pattern>/13/service/notificationService/getMedicationReminderResponse</url-pattern>
+	    <url-pattern>/13/service/notificationService/getPatientScheduledAppointments</url-pattern>
+	    <url-pattern>/13/service/notificationService/getPatientFutureConfirmedAppointments</url-pattern>
+	    <url-pattern>/13/service/notificationService/getPatientFutureScheduledAppointments</url-pattern>
+	    <url-pattern>/13/service/notificationService/getPatientConfirmedAppointments</url-pattern>
+	    <url-pattern>/13/service/notificationService/getBloodPressureNotificationInactiveAlert</url-pattern>
+	    <url-pattern>/13/service/notificationService/getMedicationNotificationInactiveAlert</url-pattern>
+	    <url-pattern>/13/service/notificationService/getWarningMessages</url-pattern>
+	    <url-pattern>/13/service/notificationService/getPatientAppointments</url-pattern>
+	    <url-pattern>/13/service/notificationService/loadMorePatientAppointments</url-pattern>
+	    <url-pattern>/13/service/notificationService/searchDetails</url-pattern>
+	    <!-- commented for guest user -->
+	    <!-- url-pattern>/13/service/notificationService/getNotificationsCount</url-pattern-->
+	    
+	    <url-pattern>/13/service/registrationService/sendSecurityCodeForPhoneNumberChange</url-pattern>
+	    <url-pattern>/13/service/registrationService/sendSecurityCodeForProfileEdit</url-pattern>
+	    <url-pattern>/13/service/registrationService/linkaccount</url-pattern>
+	    <url-pattern>/13/service/getprofileinfo</url-pattern>
+	    <url-pattern>/13/service/getvisitlist</url-pattern>    
+	    
+	    <url-pattern>/13/service/bloodpressure/saveBloodPressure</url-pattern>
+	    <url-pattern>/13/service/bloodpressure/getBloodPressure</url-pattern>
+	    <url-pattern>/13/service/bloodpressure/editBloodPressure</url-pattern>
+	    <url-pattern>/13/service/bloodpressure/deleteBloodPressure</url-pattern>
+	    <url-pattern>/13/service/bloodpressure/saveBloodPressureReminder</url-pattern>
+	    <url-pattern>/13/service/bloodpressure/getBloodPressureReminders</url-pattern>
+	    <url-pattern>/13/service/bloodpressure/deleteBloodPressureReminder</url-pattern>
+	    <url-pattern>/13/service/bloodpressure/editBloodPressureReminder</url-pattern>	    
+	    
+	    <url-pattern>/13/service/viewPatientInfo/*</url-pattern>
+	    <url-pattern>/13/service/systemAdmim/*</url-pattern>	    
+	    
+	    <url-pattern>/13/service/provider/*</url-pattern>
+	    <url-pattern>/13/service/updateprofileinfo</url-pattern>
+	    <url-pattern>/13/service/medicatnMangmntService/saveMedication</url-pattern>
+	    <url-pattern>/13/service/medicatnMangmntService/getMedicatnList</url-pattern>	    
+		<url-pattern>/13/service/medicatnMangmntService/editMedication</url-pattern>	    
+		<url-pattern>/13/service/medicatnMangmntService/deleteMedication</url-pattern>	    
+		<url-pattern>/13/service/medicatnMangmntService/saveMedicatnReminder</url-pattern>	    
+		<url-pattern>/13/service/medicatnMangmntService/getMedicatnReminder</url-pattern>	    
+		<url-pattern>/13/service/medicatnMangmntService/editMedicatnReminder</url-pattern>	    
+		<url-pattern>/13/service/medicatnMangmntService/deleteReminder</url-pattern>	    
+		<!-- <url-pattern>/13/service/medicatnMangmntService/saveReminderResponse</url-pattern> -->	    
+		<url-pattern>/13/service/medicatnMangmntService/getReminderResponse</url-pattern>
+		<url-pattern>/13/service/healthLog/getHealthLog</url-pattern>
+		<url-pattern>/13/service/getHealthLog/addWeight</url-pattern>
+		<url-pattern>/13/service/getHealthLog/getWeight</url-pattern>
+		<url-pattern>/13/service/getHealthLog/deleteWeight</url-pattern>
+		<url-pattern>/13/service/getHealthLog/updateWeight</url-pattern>	 
+		<!-- commented for guest user -->
+		<!-- url-pattern>/13/service/hospitalService/getHospitalNotice</url-pattern--> 
+		
+		
+		<url-pattern>/0/service/accountService/updateAccountPassword</url-pattern>
+	    <url-pattern>/0/service/accountService/resetAccountPassword</url-pattern>
+	    <url-pattern>/0/service/accountService/setPatientAppointment</url-pattern>
+	    <url-pattern>/0/service/accountService/getPatientAppointment</url-pattern>
+	    <url-pattern>/0/service/accountService/getPatientLabResult</url-pattern>
+	    <url-pattern>/0/service/accountService/getPatientPrescription</url-pattern>
+	    
+	    <url-pattern>/0/service/accountService/getPatientProblemGroups</url-pattern>
+	    <url-pattern>/0/service/accountService/getPatientAllergyGroup</url-pattern>
+	    <url-pattern>/0/service/accountService/getPatientPrescriptionGroups</url-pattern>
+	    <url-pattern>/0/service/accountService/getPatientLabGroups</url-pattern>
+	    <url-pattern>/0/service/accountService/getAccountImagingDetails</url-pattern>
+	    
+	    <url-pattern>/0/service/accountService/resetAccountPin</url-pattern>
+	    <url-pattern>/0/service/accountService/savepreferredlanguage</url-pattern>
+	    
+	    <url-pattern>/0/service/notificationService/getBloodPressureReminderResponse</url-pattern>
+	    <url-pattern>/0/service/notificationService/getMedicationReminderResponse</url-pattern>
+	    <url-pattern>/0/service/notificationService/getPatientScheduledAppointments</url-pattern>
+	    <url-pattern>/0/service/notificationService/getPatientFutureConfirmedAppointments</url-pattern>
+	    <url-pattern>/0/service/notificationService/getPatientFutureScheduledAppointments</url-pattern>
+	    <url-pattern>/0/service/notificationService/getPatientConfirmedAppointments</url-pattern>
+	    <url-pattern>/0/service/notificationService/getBloodPressureNotificationInactiveAlert</url-pattern>
+	    <url-pattern>/0/service/notificationService/getMedicationNotificationInactiveAlert</url-pattern>
+	    <url-pattern>/0/service/notificationService/getWarningMessages</url-pattern>
+	    <url-pattern>/0/service/notificationService/getPatientAppointments</url-pattern>
+	    <url-pattern>/0/service/notificationService/loadMorePatientAppointments</url-pattern>
+	    <url-pattern>/0/service/notificationService/searchDetails</url-pattern>
+	    <!-- commented for guest case -->
+	    <!-- url-pattern>/0/service/notificationService/getNotificationsCount</url-pattern-->
+	    
+	    
+	    <url-pattern>/0/service/registrationService/sendSecurityCodeForPhoneNumberChange</url-pattern>
+	    <url-pattern>/0/service/registrationService/sendSecurityCodeForProfileEdit</url-pattern>
+	    <url-pattern>/0/service/registrationService/linkaccount</url-pattern>
+	    <url-pattern>/0/service/getprofileinfo</url-pattern>
+	    <url-pattern>/0/service/getvisitlist</url-pattern>    
+	    
+	    <url-pattern>/0/service/bloodpressure/saveBloodPressure</url-pattern>
+	    <url-pattern>/0/service/bloodpressure/getBloodPressure</url-pattern>
+	    <url-pattern>/0/service/bloodpressure/editBloodPressure</url-pattern>
+	    <url-pattern>/0/service/bloodpressure/deleteBloodPressure</url-pattern>
+	    <url-pattern>/0/service/bloodpressure/saveBloodPressureReminder</url-pattern>
+	    <url-pattern>/0/service/bloodpressure/getBloodPressureReminders</url-pattern>
+	    <url-pattern>/0/service/bloodpressure/deleteBloodPressureReminder</url-pattern>
+	    <url-pattern>/0/service/bloodpressure/editBloodPressureReminder</url-pattern>	    
+	    
+	    <url-pattern>/0/service/viewPatientInfo/*</url-pattern>
+	    <url-pattern>/0/service/systemAdmim/*</url-pattern>	    
+	    
+	    <url-pattern>/0/service/provider/*</url-pattern>
+	    <url-pattern>/0/service/updateprofileinfo</url-pattern>
+	    <url-pattern>/0/service/medicatnMangmntService/saveMedication</url-pattern>
+	    <url-pattern>/0/service/medicatnMangmntService/getMedicatnList</url-pattern>	    
+		<url-pattern>/0/service/medicatnMangmntService/editMedication</url-pattern>	    
+		<url-pattern>/0/service/medicatnMangmntService/deleteMedication</url-pattern>	    
+		<url-pattern>/0/service/medicatnMangmntService/saveMedicatnReminder</url-pattern>	    
+		<url-pattern>/0/service/medicatnMangmntService/getMedicatnReminder</url-pattern>	    
+		<url-pattern>/0/service/medicatnMangmntService/editMedicatnReminder</url-pattern>	    
+		<url-pattern>/0/service/medicatnMangmntService/deleteReminder</url-pattern>	    
+		<!-- <url-pattern>/1/service/medicatnMangmntService/saveReminderResponse</url-pattern> -->	    
+		<url-pattern>/0/service/medicatnMangmntService/getReminderResponse</url-pattern>
+		<url-pattern>/0/service/healthLog/getHealthLog</url-pattern>
+		<url-pattern>/0/service/getHealthLog/addWeight</url-pattern>
+		<url-pattern>/0/service/getHealthLog/getWeight</url-pattern>
+		<url-pattern>/0/service/getHealthLog/deleteWeight</url-pattern>
+		<url-pattern>/0/service/getHealthLog/updateWeight</url-pattern>
+		
+		
+		
+		
+		
+		
+
+  <!--  getMedicatnList
+	    editMedication
+	    deleteMedication
+	    saveMedicatnReminder
+	    getMedicatnReminder
+	    editMedicatnReminder
+	    deleteReminder
+	    saveReminderResponse	
+	    getReminderResponse
+						    -->
+	</filter-mapping>
+	<distributable/>
+</web-app>

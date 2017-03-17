@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+
+	<!-- ````````````````````````Persistence Unit for "versawork_DS" database```````````````````````` -->
+	<persistence-unit name="versawork_ehr"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<non-jta-data-source>java:jboss/datasources/versawork_ehr</non-jta-data-source>
+		<class>com.versawork.http.model.PatientFunctionalStatus</class>
+		<class>com.versawork.http.model.PatientCarePlan</class>
+		<class>com.versawork.http.model.PatientCareTeam</class>
+		<class>com.versawork.http.model.PatientLab</class>
+		<class>com.versawork.http.model.PatientProblem</class>
+		<class>com.versawork.http.model.PatientVisit</class>
+		<class>com.versawork.http.model.PatientVitalSign</class>
+		<class>com.versawork.http.model.PatientVerification</class>
+		<class>com.versawork.http.model.PatientDiagnosis</class>
+		<class>com.versawork.http.model.PatientUpcomingAppointment</class>
+		<class>com.versawork.http.model.PatientVisitInpatient</class>
+		<class>com.versawork.http.model.PatientImmunization</class>
+		<class>com.versawork.http.model.PatientVerificationLog</class>
+		<class>com.versawork.http.model.PatientPrescription</class>
+		<class>com.versawork.http.model.PatientProcedure</class>
+		<class>com.versawork.http.model.PatientAllergy</class>
+		<class>com.versawork.http.model.PrescriptionAction</class>
+		<class>com.versawork.http.model.PatientRosetta</class>
+		<class>com.versawork.http.model.PatientImaging</class>
+		<class>com.versawork.http.model.EtlInfo</class>
+		<class>com.versawork.http.model.EtlLogger</class>
+		<class>com.versawork.http.model.ClientNaavisDatabases</class>
+		<class>com.versawork.http.model.CareMemberRole</class>
+		<class>com.versawork.http.model.ETLTransactionHistory</class>
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2005Dialect" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.connection.isolation" value="1"/>
+			<property name="hibernate.validator.apply_to_ddl" value="false" />
+			<property name="hibernate.validator.autoregister_listeners"
+				value="false" />
+				<property name="hibernate.format_sql" value="false" />
+			<property name="hibernate.temp.use_jdbc_metadata_defaults"
+				value="false" />
+		</properties>
+	</persistence-unit>
+
+
+
+
+</persistence>

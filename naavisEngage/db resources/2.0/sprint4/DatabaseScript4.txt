@@ -1,0 +1,2 @@
+ALTER TABLE [engage_app_20].[dbo].[account_medication_management] ALTER COLUMN dosage float
+ALTER TABLE [engage_app_20].[dbo].[account_medication_management_schedule] ALTER COLUMN reminder_day nvarchar(64)
